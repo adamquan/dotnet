@@ -1,9 +1,9 @@
 # .NET Core App OpenTelemetry Instrumentation & Grafana Cloud
 
-This is a demo of **the .NET Core Apps** OpenTelemetry instrumentation:
+This is a demo of **the .NET Core Apps** OpenTelemetry instrumentation. This repo was cloned from the [opentelemetry-dotnet-demo](https://github.com/ksivamuthu/opentelemetry-dotnet-demo) repo and modified to showcase both auto-instrumentation, OTEL .Net SDK and Grafana Cloud.
 
 * [Auto instrumentation](https://github.com/adamquan/dotnet/tree/main/opentelemetry-dotnet-auto) with OTEL [auto-instrumentation](https://opentelemetry.io/docs/languages/net/automatic/).
-* [Manual instrumentation](https://opentelemetry.io/docs/languages/net/automatic/custom/) with [.NET SDK](https://github.com/open-telemetry/opentelemetry-dotnet)
+* [Manual instrumentation](https://github.com/adamquan/dotnet/tree/main/opentelemetry-dotnet-grafana) with [.NET SDK](https://opentelemetry.io/docs/languages/net/automatic/custom/)
 
 The demo app contains two interconnected microservices:
 
