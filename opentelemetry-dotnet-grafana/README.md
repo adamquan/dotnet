@@ -1,6 +1,6 @@
-# .NET Core Application OpenTelemetry Instrumentation & Grafana Cloud
+# .NET Core App OpenTelemetry Instrumentation & Grafana Cloud
 
-Demo of instrumenting **the .NET Core Apps** with OpenTelemetry.
+This is a demo of instrumenting **the .NET Core Apps** with OpenTelemetry.
 
 The demo app contains two interconnected microservices. Both will be instrumented using OpenTelemetry .NET SDK: 
 
