@@ -55,4 +55,4 @@ curl --location --request POST 'http://localhost:4500/api/Order' \
 
 Navigate to the Grafana Cloud UI, and see all the traces.
 
-![Screen Shot 2020-12-04 at 4.03.51 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1607115887365/e87AmzRGB.png)
+![sdk.png](https://github.com/adamquan/dotnet/blob/main/images/sdk.png)
