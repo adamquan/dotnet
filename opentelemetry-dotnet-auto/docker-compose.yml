@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  orderservice:
+    image: orderservice-auto
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    ports:
+      - "5500:8080"
+    networks: 
+      - demo
+  inventoryservice:
+    image: inventoryservice-auto
+    build:
+      context: .
+      dockerfile: InventoryService/Dockerfile
+    ports:
+      - "5501:8080"
+    networks: 
+      - demo
+networks: 
+  demo:
