@@ -27,6 +27,9 @@ namespace OrderService.Controllers
         [HttpPost]        
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
+            // Add some cpu intensive work
+            ConsumeCPU(70);
+
             var isItemAvailable = await VerifyInventory(order);
             if(!isItemAvailable) return BadRequest("Item is not available");
 
@@ -69,6 +72,25 @@ namespace OrderService.Controllers
               var response = await httpClient.PostAsync("api/inventory/claim", content);
               return response.IsSuccessStatusCode;              
           } 
+        }
+
+        public static void ConsumeCPU(int percentage)
+        {
+            if (percentage < 0 || percentage > 100)
+                throw new ArgumentException("percentage");
+            Stopwatch watch = new Stopwatch();
+            watch.Start();            
+            while (true)
+            {
+                // Make the loop go on for "percentage" milliseconds then sleep the 
+                // remaining percentage milliseconds. So 40% utilization means work 40ms and sleep 60ms
+                if (watch.ElapsedMilliseconds > percentage)
+                {
+                    Thread.Sleep(100 - percentage);
+                    watch.Reset();
+                    watch.Start();
+                }
+            }
         }
     }
 }
