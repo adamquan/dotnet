@@ -37,7 +37,7 @@ namespace OrderService
                                 .AddProcessor(new PyroscopeSpanProcessor())
                                 .ConfigureResource(resource =>
                                     resource.AddService(
-                                        serviceName: "OrderService-sdk"))
+                                        serviceName: "OrderService-sdk")) // trace service name
             );
 
             services.AddControllers();
