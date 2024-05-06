@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Text;
+using System.Diagnostics;
+using System.Threading;
 
 namespace InventoryService.Controllers
 {
@@ -22,6 +26,9 @@ namespace InventoryService.Controllers
         [Route("verify")]
         public async Task<IActionResult> VerifyInventory([FromBody] ItemVerification verification)
         {
+            // Add some cpu intensive work
+            KillCore();
+
             var item = await _dbContext.Items.SingleOrDefaultAsync(x => x.ItemCode == verification.ItemCode);
             if(item == null)
                 return BadRequest($"Item {verification.ItemCode} not found");
@@ -58,5 +65,21 @@ namespace InventoryService.Controllers
             await _dbContext.SaveChangesAsync();
             return Ok(item);
         }
+        public void KillCore()
+        {
+            Random rand = new Random();
+
+            Stopwatch watch = new Stopwatch();
+            watch.Start();            
+
+            long num = 0;
+            while(true)
+            {
+                num += rand.Next(100, 1000);
+                if (num > 1000000) { num = 0; }
+                if (watch.ElapsedMilliseconds > 1000) break;
+            }
+        }
+
     }
 }

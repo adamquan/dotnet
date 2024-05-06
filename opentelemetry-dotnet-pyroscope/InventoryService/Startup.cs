@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Pyroscope.OpenTelemetry;
 
 namespace InventoryService
 {
@@ -25,14 +26,14 @@ namespace InventoryService
         {
             services.AddDbContext<InventoryDbContext>(opt => opt.UseInMemoryDatabase("inventory"));
         
-            services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter()
-                                .AddSource("InventoryService-sdk")
+            services.AddOpenTelemetry().WithTracing(builder => builder
                                 .AddAspNetCoreInstrumentation()
-                                .AddHttpClientInstrumentation()
-                                .AddOtlpExporter()  
-                    .ConfigureResource(resource =>
-                        resource.AddService(
-                            serviceName: "InventoryService-sdk"))
+                                .AddSource("InventoryService-sdk")
+                                .AddOtlpExporter()
+                                .AddProcessor(new PyroscopeSpanProcessor())
+                                .ConfigureResource(resource =>
+                                    resource.AddService(
+                                        serviceName: "InventoryService-sdk")) // trace service name
             );
 
             services.AddControllers();

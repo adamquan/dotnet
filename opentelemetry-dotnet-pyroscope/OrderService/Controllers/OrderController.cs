@@ -77,25 +77,6 @@ namespace OrderService.Controllers
           } 
         }
 
-        public static void ConsumeCPU(int percentage)
-        {
-            if (percentage < 0 || percentage > 100)
-                throw new ArgumentException("percentage");
-            Stopwatch watch = new Stopwatch();
-            watch.Start();            
-            while (true)
-            {
-                // Make the loop go on for "percentage" milliseconds then sleep the 
-                // remaining percentage milliseconds. So 40% utilization means work 40ms and sleep 60ms
-                if (watch.ElapsedMilliseconds > percentage)
-                {
-                    Thread.Sleep(100 - percentage);
-                    watch.Reset();
-                    watch.Start();
-                }
-            }
-        }
-
         public void KillCore()
         {
             Random rand = new Random();
@@ -108,7 +89,7 @@ namespace OrderService.Controllers
             {
                 num += rand.Next(100, 1000);
                 if (num > 1000000) { num = 0; }
-                if (watch.ElapsedMilliseconds > 3000) break;
+                if (watch.ElapsedMilliseconds > 1000) break;
             }
         }
     }
