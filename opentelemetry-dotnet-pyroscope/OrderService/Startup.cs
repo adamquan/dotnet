@@ -35,9 +35,9 @@ namespace OrderService
                                 .AddSource("OrderService-sdk")
                                 .AddOtlpExporter()
                                 .AddProcessor(new PyroscopeSpanProcessor())
-//                                .ConfigureResource(resource =>
-//                                    resource.AddService(
-//                                        serviceName: "OrderService-sdk"))
+                                .ConfigureResource(resource =>
+                                    resource.AddService(
+                                        serviceName: "OrderService-sdk"))
             );
 
             services.AddControllers();
