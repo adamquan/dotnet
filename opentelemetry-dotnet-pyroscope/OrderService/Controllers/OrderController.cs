@@ -98,6 +98,8 @@ namespace OrderService.Controllers
 
         public void KillCore()
         {
+            Random rand = new Random();
+            
             Stopwatch watch = new Stopwatch();
             watch.Start();            
 
