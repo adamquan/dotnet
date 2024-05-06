@@ -99,7 +99,7 @@ namespace OrderService.Controllers
         public void KillCore()
         {
             Random rand = new Random();
-            
+
             Stopwatch watch = new Stopwatch();
             watch.Start();            
 
@@ -108,7 +108,7 @@ namespace OrderService.Controllers
             {
                 num += rand.Next(100, 1000);
                 if (num > 1000000) { num = 0; }
-                if (watch.ElapsedMilliseconds > 500) break;
+                if (watch.ElapsedMilliseconds > 3000) break;
             }
         }
     }
