@@ -31,7 +31,7 @@ namespace OrderService.Controllers
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
             // Add some cpu intensive work
-            ConsumeCPU(70);
+            KillCore();
 
             var isItemAvailable = await VerifyInventory(order);
             if(!isItemAvailable) return BadRequest("Item is not available");
@@ -93,6 +93,20 @@ namespace OrderService.Controllers
                     watch.Reset();
                     watch.Start();
                 }
+            }
+        }
+
+        public void KillCore()
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();            
+
+            long num = 0;
+            while(true)
+            {
+                num += rand.Next(100, 1000);
+                if (num > 1000000) { num = 0; }
+                if (watch.ElapsedMilliseconds > 500) break;
             }
         }
     }
