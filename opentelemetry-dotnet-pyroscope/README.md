@@ -3,6 +3,7 @@
 This is a demo of instrumenting **the .NET Core Apps** with:
 * OpenTelemetry for traces
 * [Pyroscope](https://grafana.com/oss/pyroscope/) for profiles
+
 Profiles will be linked to traces using [span profile](https://grafana.com/docs/pyroscope/latest/configure-client/trace-span-profiles/dotnet-span-profiles/).
 
 The demo app contains two interconnected microservices. Both will be instrumented using OpenTelemetry .NET SDK, and Pyroscope: 
@@ -33,7 +34,7 @@ To start collecting Span Profiles for your .NET application, you need to include
                                         serviceName: "OrderService-sdk")) // trace service name
             );
 ```
-With the span processor registered, spans created automatically (for example, HTTP handlers) and manually (ActivitySource.StartActivity()) have profiling data associated with them.
+With the span processor registered, spans created automatically (for example, HTTP handlers) and manually (`ActivitySource.StartActivity()`) have profiling data associated with them.
 
 Since the app is super simple and load is light, we added some cpu intensive code purposely, to make sure we capature the profiles:
 
