@@ -31,14 +31,13 @@ namespace OrderService
             });
 
             services.AddOpenTelemetry().WithTracing(builder => builder
-                                .AddSource("OrderService-sdk")
                                 .AddAspNetCoreInstrumentation()
-                                .AddHttpClientInstrumentation()
+                                .AddSource("OrderService-sdk")
                                 .AddOtlpExporter()
                                 .AddProcessor(new PyroscopeSpanProcessor())
-                                .ConfigureResource(resource =>
-                                    resource.AddService(
-                                        serviceName: "OrderService-sdk"))
+//                                .ConfigureResource(resource =>
+//                                    resource.AddService(
+//                                        serviceName: "OrderService-sdk"))
             );
 
             services.AddControllers();
